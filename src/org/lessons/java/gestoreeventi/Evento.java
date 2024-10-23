@@ -12,6 +12,12 @@ public class Evento {
 	
 	//Costruttore che richieda parametri e inizializzi a 0 posti prenotati
 	public Evento(String titoloEvento, LocalDate dataEvento, int postiTotali) {
+		if (dataEvento.isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("La data dell'evento non può essere nel passato.");
+        }
+        if (postiTotali <= 0) {
+            throw new IllegalArgumentException("Il numero di posti totali deve essere positivo.");
+        }
 		this.titoloEvento = titoloEvento;
 		this.dataEvento = dataEvento;
 		this.postiTotali = postiTotali;
@@ -43,6 +49,8 @@ public class Evento {
 		return postiPrenotati;
 	}
 	
+	//Metodo per la Prenotazione dell'evento
+	//Metodo per la Cancellazione dell'evento
 	
 	
 }

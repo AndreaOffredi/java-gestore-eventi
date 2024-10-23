@@ -1,7 +1,7 @@
 package org.lessons.java.gestoreeventi;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Evento {
 
@@ -50,42 +50,41 @@ public class Evento {
 		return postiPrenotati;
 	}
 	
+	//Metodo per posti disponibili
+		public int postiDisponibili() {
+			return postiTotali - postiPrenotati;
+		}
+	
 	//Metodo per la Prenotazione dell'evento
 	public void prenotazionePosti() {
 		if(LocalDate.now().isAfter(dataEvento)) {
 			System.out.println("L'evento è già passato.");
 			return;
 		}else if (postiPrenotati >= postiTotali) {
-			System.out.println("L'evento è tutto SoldOut.");
-			return;
+			throw new IllegalArgumentException("Numero di posti non disponibile");
 		}else {
 			postiPrenotati++;
-			System.out.println("Prenotazione avvenuta. Posti prenotati: " + postiPrenotati);
 		}
 	}
+	
 	//Metodo per la Cancellazione dell'evento
 	public void cancellazionePosti() {
 		if(LocalDate.now().isAfter(dataEvento)) {
 			System.out.println("L'evento è già passato.");
 			return;
 		}else if (postiPrenotati <= 0) {
-			System.out.println("Non ci sono prenotazioni al momento.");
-			return;
+			throw new IllegalArgumentException("Errore. Il numero di disdette non può essere maggiore al numero di prenotazioni effettuate.");
 		}else {
 			postiPrenotati--;
-			System.out.println("Disdetta avvenuta. Posti prenotati: " + postiPrenotati);
 		}
 	}
+	
 	//Overrade del metodo ToString
 	@Override
 	public String toString() {
 		//definisco il formato della data
-		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-		String dataFormattata = formatoData.format(dataEvento);
-		
+		DateTimeFormatter dataFormattata = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		//ritorno il ToString data formattata - titolo
-		return dataFormattata + "-" + titoloEvento;
+		return dataEvento.format(dataFormattata) + " - " + titoloEvento;
 	}
-	
-	
 }

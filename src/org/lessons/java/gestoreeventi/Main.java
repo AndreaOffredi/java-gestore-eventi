@@ -82,5 +82,30 @@ public class Main {
 		//STEP 3 - Test funzionamento classe Concerto
 		Concerto nuovoConcerto = new Concerto("Afro Raduno", LocalDate.of(2025, Month.APRIL, 20), LocalTime.of(20, 45), 19.987, 100);
 		System.out.println(nuovoConcerto.toString());
+		
+		
+		//STEP 4 - Test funzionamento metodi lista
+		ProgrammaEventi nuovaLista = new ProgrammaEventi("Lista Concerti");
+        
+		//METODO - Aggiunta nuovi eventi
+        nuovaLista.aggiungiEvento(new Evento("Rock", LocalDate.of(2025, Month.AUGUST, 14), 20));
+        nuovaLista.aggiungiEvento(new Evento("Jazz", LocalDate.of(2025, Month.JULY, 07), 50));
+        nuovaLista.aggiungiEvento(new Evento("Afro", LocalDate.of(2025, Month.AUGUST, 14), 100));
+        
+        //METODO - Filtro per data
+        System.out.println("Eventi il 14/08/2025:");
+        nuovaLista.getEventiPerData(LocalDate.of(2025, Month.AUGUST, 14)).forEach(System.out::println);
+        
+        //METODO - Numero eventi presenti nella lista
+        System.out.println("\nNumero totale di eventi: " + nuovaLista.getNumeroEventi());
+        
+        //METODO - Stampa lista in formato DATA-TITOLO
+        System.out.println("\nLista completa:");
+        System.out.println(nuovaLista.toString());
+        
+        //METODO - Svuota lista
+        nuovaLista.svuotaEventi();
+        System.out.println("\nDopo aver svuotato gli eventi: " + nuovaLista.getNumeroEventi());
+        
 	}
 }

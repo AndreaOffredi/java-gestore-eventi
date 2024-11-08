@@ -1,6 +1,7 @@
 package org.lessons.java.gestoreeventi;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Month;
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ public class Main {
 		System.out.println("Prossimo Evento: " + nuovoEvento.toString() + ", numero totale di posti disponibili "
 							+ nuovoEvento.getPostiTotali() + ".");
 		
-		//2) Chiedere all'utente quante prenotazioni vuoi fare
+		//2) Chiedere all'utente quante prenotazioni vuole fare
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Quante posti vuoi prenotare? ");
 		int numeroPosti = scan.nextInt();
@@ -76,5 +77,10 @@ public class Main {
 		//5) Stampa posti prenotati e posti disponibili
 		System.out.println("Posti prenotati: " + nuovoEvento.getPostiPrenotati());
 		System.out.println("Posti disponibili: " + nuovoEvento.postiDisponibili());
+		
+		
+		//STEP 3 - Test funzionamento classe Concerto
+		Concerto nuovoConcerto = new Concerto("Afro Raduno", LocalDate.of(2025, Month.APRIL, 20), LocalTime.of(20, 45), 19.987, 100);
+		System.out.println(nuovoConcerto.toString());
 	}
 }

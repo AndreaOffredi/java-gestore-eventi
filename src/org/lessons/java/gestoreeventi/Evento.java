@@ -6,8 +6,8 @@ import java.time.format.DateTimeFormatter;
 public class Evento {
 
 	//Attributi con le proprietà dell'evento
-	private String titoloEvento;
-	private LocalDate dataEvento;
+	protected String titoloEvento;
+	protected LocalDate dataEvento;
 	private int postiTotali;
 	private int postiPrenotati;
 	
